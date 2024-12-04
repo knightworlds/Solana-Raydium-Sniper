@@ -1,115 +1,81 @@
-# How can I boost the volume of spl token in Raydium?
-# Raydium Volume Bot
+# Solana Raydium Sniper
 
-This volume bot distribute SOL to multiple wallets and buy and sell with that distributed wallets permanently on the Raydium platform.
+Solana Raydium Sniper is a bot that fetches new token pools and executes buys using the Jito technique to optimize for faster transaction speeds and potential profits.
 
-## Contact Info
+## GitHub Repository
 
-<p>
-  <a href="mailto:leobrandt0912@gmail.com" target="_blank">
-        <img alt="Email"
-        src="https://img.shields.io/badge/Email-00599c?style=for-the-badge&logo=gmail&logoColor=white"/>
-    </a>
-     <a href="https://x.com/web3batman" target="_blank"><img alt="Twitter"
-        src="https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
-<a href="https://t.me/shinnyleo0912" target="_blank"><img alt="Telegram"
-        src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/></a>
-</p>
+[Raydium Sniper GitHub Repository](https://github.com/Rabnail-SOL/Solana-Raydium-Sniper)
 
 ## Features
 
-- **Automated Wallet Creation**: Create number of wallets automatically to buy and sell the token
-- **Automated SOL Distribution**: Distributes SOL to those new wallets.
-- **Endless Buy and Sell Swaps**: Buy and Sell with those wallets permanently.
-- **Configurable Parameters**: Allows customization of buy amounts, intervals, distribution settings, and more.
-<!--
-- **Massive Buy Mode**: Enables the configuration of multiple wallets for large-scale buy operations.
-- **Sell Mode**: Gradually sells all tokens in sub-wallets through small transactions.
-- **Token Pair Settings**: Configurable token mint and pool ID for swap operations.
--->
-<!--
+- **Automated Pool Detection**: Detects new pools on Raydium and buys tokens automatically.
+- **Jito Integration**: Leverages Jito block engine for rapid transaction processing.
+- **Configurable Environment Variables**: Customize bot behavior using environment variables.
+- **Auto-Sell Functionality**: Automatizes selling with multiple take-profit options and stop-loss settings.
+- **Advanced Filters and Configuration**: Fine-tune sniping behavior using extensive filter options.
+
 ## Environment Variables
 
-The bot uses the following environment variables, which should be defined in a `.env` file:
+Set the following environment variables in your `.env` file:
 
-```env
-PRIVATE_KEY=                 # Private key for the main wallet
-RPC_ENDPOINT=                # RPC endpoint for Solana
-RPC_WEBSOCKET_ENDPOINT=      # RPC WebSocket endpoint for Solana
+```plaintext
+PRIVATE_KEY=
+RPC_ENDPOINT=https://staked.helius-rpc.com/?api-key=
+RPC_WEBSOCKET_ENDPOINT=wss://mainnet.helius-rpc.com/?api-key=
 
-####### BUY SETTING #######
-IS_RANDOM=true               # Enable random buy amounts
-DISTRIBUTION_AMOUNT=0.01     # Amount of SOL to distribute to each wallet
-BUY_AMOUNT=0.01              # Fixed buy amount
-BUY_UPPER_AMOUNT=0.002       # Upper limit for random buy amount
-BUY_LOWER_AMOUNT=0.001       # Lower limit for random buy amount
+### Buy Configuration
+- `QUOTE_MINT`:               The mint address of the token you're using to buy (e.g., WSOL).
+- `QUOTE_AMOUNT`:             The amount of token used for buying.
+- `MAX_BUY_RETRIES`:          Maximum number of attempts to retry buying.
 
-BUY_INTERVAL_MAX=2000        # Maximum interval between buys in milliseconds
-BUY_INTERVAL_MIN=4000        # Minimum interval between buys in milliseconds
+### Sell Configuration
+- `AUTO_SELL`:                Enable or disable auto-sell.
+- `MAX_SELL_RETRIES`:         Maximum number of retries for selling.
+- `PRICE_CHECK_INTERVAL`:     Interval between price checks in milliseconds.
+- `PRICE_CHECK_DURATION`:     Duration for price checks in milliseconds.
+- `TAKE_PROFIT1` and `TAKE_PROFIT2`: Target profit levels.
+- `SELL_AT_TP1`:              Percentage of holding to sell at the first take-profit level.
+- `STOP_LOSS`:                Stop-loss percentage.
+- `SELL_SLIPPAGE`:            Allowed sell slippage percentage.
 
-CHECK_BAL_INTERVAL=3000      # Interval to check wallet balances in milliseconds
-DISTRIBUTE_WALLET_NUM=8      # Number of wallets to distribute SOL to
+### Filters
+- `USE_SNIPE_LIST`:           Use a predefined list of tokens to snipe.
+- `SNIPE_LIST_REFRESH_INTERVAL`: Time interval to refresh the snipe list.
+- `CHECK_IF_MINT_IS_RENOUNCED`, `CHECK_IF_MINT_IS_MUTABLE`, `CHECK_IF_MINT_IS_BURNED`: Options for mint conditions.
+- `CHECK_SOCIAL`:             Enable social checks.
+- `LOG_LEVEL`:                Set the logging level (e.g., `info`).
+- `MIN_POOL_SIZE`, `MAX_POOL_SIZE`: Limits for pool sizes eligible for sniping.
 
-SWAP_ROUTING=true            # Enable swap routing
+### General Settings
+- `ONE_TOKEN_AT_A_TIME`:      Restriction to one token trade at a time.
+- `BLOCKENGINE_URL`:          URL of the Jito block engine server.
+- `COMMITMENT_LEVEL`:         Solana network commitment level (e.g., `confirmed`).
+- `JITO_FEE`:                 Fee incurred per Jito transaction.
+- `JITO_KEY`:                 API key for Jito transactions.
 
-###### FOR MASSIVE BUY #####
-WALLET_NUM=8                 # Number of wallets for massive buy operations
-
-########## FOR SELL MODE ##########
-SELL_ALL_BY_TIMES=20         # Number of times to sell all tokens in sub-wallets gradually
-SELL_PERCENT=100             # Percentage of tokens to sell from the main wallet
-
-#### TOKEN PAIR SETTING ####
-TOKEN_MINT=6VbEGuqwhjdgV9NxhMhvRkrFqXVNk53CvD7hK3C3yQS9  # Token mint address
-POOL_ID=null                  # Pool ID for the token pair
-
-TX_FEE=10                    # Transaction fee
-ADDITIONAL_FEE=0.006         # Additional fee (should be larger than 0.006 SOL)
-JITO_KEY=                    # Jito key
-JITO_FEE=                    # Jito fee
-BLOCKENGINE_URL=ny.mainnet.block-engine.jito.wtf  # Block engine URL
-
-###### GENERAL SETTING ######
-LOG_LEVEL=info               # Logging level (info, debug, error)
+### Transaction Mode
+- `JITO_MODE`:                Enable Jito transaction mode.
+- `JITO_ALL`:                 Option to apply Jito to all transactions.
 ```
--->
+## Usage Guide
 
-## Usage
-1. Clone the repository
-```
-git clone https://github.com/web3batman/Raydium-Volume-Bot
-cd Raydium-Volume-Bot
-```
-2. Install dependencies
-```
+1. **Setup Environment**: Fill out your `.env` file with your private key and RPC endpoints.
+2. **Run the Bot**: Execute the bot using your preferred Node.js environment.
+
+```bash
 npm install
-```
-3. Configure the environment variables
 
-Rename the .env.copy file to .env and set RPC and WSS, main wallet's secret key, and jito auth keypair.
-
-4. Run the bot
-
-```
-npm run start
+npm run buy
 ```
 
-# Version 2 is developed and it is private repository.
-### What is the main difference between the former volume booster and the updated one?
 
-## 🚀 Last Version's Drawbacks and Improvements
-- ❌ **Repetitive buy and sell with one wallet**: The last version of the Raydium Volume Bot used fixed wallets, so it was apparent on DexScreener that some wallets performed repetitive buy and sell actions.
-- ✅ **Transferring SOL to new wallet**: After buying and selling in one wallet, it transfers SOL to a newly created wallet and continues buying and selling there.
-- ❌ **No increase in the number of makers**: It didn't increase the number of pool makers, only the volume.
-- ✅ **Maker increase**: New wallets are created every round of buying and selling, increasing the number of makers.
-- ❌ **Gathering token instead of SOL**: When gathering, if there were tokens left, it didn't sell them before gathering. Instead, it just gathered tokens to the main wallet.
-- ✅ **Sell before gather**: When gathering, if there are tokens left in the wallet, it sells the tokens first and gathers only SOL (the token account rent of 0.00203 SOL is reclaimed).
-- ❌ **Equal number of buys and sells**: One-time buy and one-time sell actions left sell pressure at the end, as there was always a sell at the end of the volume operation.
-- ✅ **More buys than sells**: It randomly buys twice with SOL in the wallet and sells all tokens after some time, making the number of buys twice as many as sells, thus creating more buy pressure.
+## 👤 Author
 
-# Version 3 is also developed.
-### Version 3 is designed for the massive transactions in a very short time.
-So, it is making 300 transactions in a minute.
-How wonderful it is.
-If you need it, you can contact me.
+### Discord: rabnail_15 in discord
 
+### Twitter: [@Rabnail_SOL](https://twitter.com/Rabnail_SOL)   
+
+### Telegram: [@Rabnail_SOL](https://t.me/Rabnail_SOL)   
+
+
+You can always find me here, for help, or for other projects.

@@ -1,12 +1,10 @@
 {
-  "name": "volume-bot",
+  "name": "solana-sniper-bot",
+  "author": "Filip Dundjer",
   "scripts": {
-    "start": "ts-node index.ts",
+    "buy": "ts-node buy.ts",
     "sell": "ts-node sell.ts",
-    "tsc": "tsc --noEmit",
-    "gather": "ts-node gather.ts",
-    "status": "ts-node status.ts",
-    "massive": "ts-node massiveBuy.ts"
+    "tsc": "tsc "
   },
   "dependencies": {
     "@metaplex-foundation/mpl-token-metadata": "^3.2.1",
