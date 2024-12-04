@@ -69,13 +69,10 @@ npm run buy
 ```
 
 
-## 👤 Author
+## 👤 Contact Me
 
-### Discord: rabnail_15 in discord
+#### Discord: [@knightworlds](https://discordapp.com/users/965772784653443215)
 
-### Twitter: [@Rabnail_SOL](https://twitter.com/Rabnail_SOL)   
+#### Twitter: [@knightworlds127](https://twitter.com/knightworlds127)   
 
-### Telegram: [@Rabnail_SOL](https://t.me/Rabnail_SOL)   
-
-
-You can always find me here, for help, or for other projects.
+#### Telegram: [@knightworlds](https://t.me/knightworlds)
