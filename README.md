@@ -78,8 +78,8 @@ The bot is capable of sniping tokens within the `first block` or `first second` 
 
 ## 👤 Contact Me
 
-### Discord: [@knightworlds](https://discordapp.com/users/965772784653443215)
+### Discord: [@cashblaze127](https://discordapp.com/users/965772784653443215)
 
-### Twitter: [@knightworlds127](https://twitter.com/knightworlds127)   
+### Twitter: [@cashblaze127](https://twitter.com/cashblaze127)   
 
-### Telegram: [@knightworlds](https://t.me/knightworlds)
+### Telegram: [@cashblaze127](https://t.me/cashblaze127)
